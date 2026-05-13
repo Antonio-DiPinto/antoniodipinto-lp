@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Antonio Di Pinto · Diseño web, Copy & Funnels · Tenerife</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:          #080808;
+  --bg2:         #111111;
+  --bg3:         #181818;
+  --cream:       #F5F0E8;
+  --cream2:      #EDE8DF;
+  --cream-text:  #1A1816;
+  --cream-muted: #6B6560;
+  --accent:      #FF4F1F;
+  --accent2:     #FF7A50;
+  --text:        #F2EDE6;
+  --muted:       #7A7068;
+  --border:      rgba(255,255,255,0.08);
+  --border-c:    rgba(26,24,22,0.12);
+  --radius:      12px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 17px;
+  line-height: 1.65;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.025; pointer-events: none; z-index: 9999;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 0 5vw; height: 64px;
+  display: flex; align-items: center; justify-content: space-between;
+  background: rgba(8,8,8,0.82);
+  backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--border);
+  transition: background 0.3s;
+}
+.nav-logo {
+  font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem;
+  color: var(--text); text-decoration: none; letter-spacing: -0.01em;
+}
+.nav-logo .dot { color: var(--accent); }
+.nav-cta {
+  background: var(--accent); color: #fff;
+  font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 0.875rem;
+  padding: 9px 20px; border-radius: 100px; text-decoration: none;
+  transition: background 0.2s, transform 0.15s; white-space: nowrap;
+}
+.nav-cta:hover { background: var(--accent2); transform: translateY(-1px); }
+
+/* ── HERO ── */
+#hero {
+  min-height: 100vh;
+  display: flex; flex-direction: row; align-items: center;
+  padding: 100px 5vw 80px; gap: 56px;
+  position: relative; overflow: hidden;
+}
+.hero-glow {
+  position: absolute; width: 600px; height: 600px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,79,31,0.11) 0%, transparent 70%);
+  top: -100px; right: -80px; pointer-events: none;
+}
+.hero-glow-2 {
+  position: absolute; width: 350px; height: 350px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,79,31,0.05) 0%, transparent 70%);
+  bottom: 60px; left: -60px; pointer-events: none;
+}
+.hero-content { flex: 1; min-width: 0; position: relative; z-index: 1; }
+.hero-tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 0.72rem; font-weight: 500; letter-spacing: 0.07em;
+  text-transform: uppercase; color: var(--muted); margin-bottom: 28px;
+  opacity: 0; animation: fadeUp 0.6s ease forwards 0.1s;
+}
+.hero-tag::before {
+  content: ''; width: 6px; height: 6px; border-radius: 50%;
+  background: var(--accent); flex-shrink: 0;
+}
+.hero-h1 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(2.4rem, 5vw, 4.6rem);
+  font-weight: 800; line-height: 1.05; letter-spacing: -0.03em;
+  max-width: 700px; margin-bottom: 28px;
+}
+.hero-h1 .line { display: block; overflow: hidden; }
+.hero-h1 .line span {
+  display: block; opacity: 0; transform: translateY(100%);
+  animation: slideUp 0.7s cubic-bezier(0.22,1,0.36,1) forwards;
+}
+.hero-h1 .line:nth-child(1) span { animation-delay: 0.25s; }
+.hero-h1 .line:nth-child(2) span { animation-delay: 0.38s; }
+.hero-h1 .line:nth-child(3) span { animation-delay: 0.51s; color: var(--accent); }
+.hero-sub {
+  font-size: clamp(0.95rem, 1.8vw, 1.08rem); color: var(--muted);
+  max-width: 500px; margin-bottom: 40px;
+  opacity: 0; animation: fadeUp 0.6s ease forwards 0.65s;
+}
+.hero-ctas {
+  display: flex; gap: 14px; flex-wrap: wrap; align-items: center;
+  margin-bottom: 44px; opacity: 0; animation: fadeUp 0.6s ease forwards 0.78s;
+}
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--accent); color: #fff;
+  font-weight: 500; font-size: 0.95rem; padding: 13px 26px;
+  border-radius: 100px; text-decoration: none;
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+}
+.btn-primary:hover {
+  background: var(--accent2); transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(255,79,31,0.32);
+}
+.btn-secondary {
+  display: inline-flex; align-items: center; gap: 8px;
+  color: var(--muted); font-weight: 400; font-size: 0.95rem;
+  text-decoration: none; transition: color 0.2s;
+}
+.btn-secondary:hover { color: var(--text); }
+.btn-secondary svg { transition: transform 0.2s; }
+.btn-secondary:hover svg { transform: translateY(3px); }
+.hero-trust {
+  display: flex; gap: 24px; flex-wrap: wrap;
+  opacity: 0; animation: fadeUp 0.6s ease forwards 0.9s;
+}
+.trust-item {
+  display: flex; align-items: center; gap: 7px;
+  font-size: 0.8rem; color: var(--muted);
+}
+.trust-item::before { content: '✓'; color: var(--accent); font-weight: 700; }
+
+/* Hero visual — desktop only */
+.hero-visual {
+  flex: 0 0 42%; max-width: 480px;
+  position: relative; z-index: 1;
+  opacity: 0; animation: fadeUp 0.8s ease forwards 0.6s;
+}
+.hero-mockup {
+  width: 100%; border-radius: 14px;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.07);
+  display: block;
+}
+/* Decorative arrows pointing at mockup */
+.hero-arrow-1, .hero-arrow-2 {
+  position: absolute; pointer-events: none;
+  opacity: 0; animation: fadeUp 0.6s ease forwards 1s;
+}
+.hero-arrow-1 { top: -32px; left: -48px; }
+.hero-arrow-2 { bottom: -20px; left: -44px; }
+
+/* ── SECTIONS COMMON ── */
+section { padding: 90px 5vw; }
+.section-label {
+  display: block; font-size: 0.7rem; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--accent);
+  font-weight: 600; margin-bottom: 16px;
+}
+.section-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(1.7rem, 3.5vw, 2.8rem);
+  font-weight: 800; letter-spacing: -0.025em; line-height: 1.1;
+  margin-bottom: 20px; max-width: 680px;
+}
+.section-sub {
+  font-size: 1.02rem; color: var(--muted);
+  max-width: 540px; margin-bottom: 52px;
+}
+.reveal {
+  opacity: 0; transform: translateY(28px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ── PAIN — CREAM ── */
+#pain { background: var(--cream); color: var(--cream-text); }
+#pain .section-title { color: var(--cream-text); }
+.pain-intro { font-size: 1rem; color: var(--cream-muted); max-width: 620px; margin-bottom: 44px; }
+.pain-list { list-style: none; max-width: 680px; }
+.pain-list li {
+  display: flex; align-items: flex-start; gap: 14px;
+  padding: 18px 0; border-bottom: 1px solid var(--border-c);
+  font-size: 0.97rem; line-height: 1.55;
+}
+.pain-list li:last-child { border-bottom: none; }
+.pain-icon {
+  width: 26px; height: 26px; min-width: 26px;
+  background: rgba(255,79,31,0.1); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; margin-top: 2px;
+  font-size: 0.65rem; color: var(--accent); font-weight: 700;
+}
+.pain-list strong { color: var(--cream-text); }
+.pain-list span { color: var(--cream-muted); }
+.pain-conclusion {
+  margin-top: 44px; padding: 24px 28px;
+  border: 1px solid var(--border-c); border-left: 3px solid var(--accent);
+  border-radius: var(--radius); font-size: 1.02rem;
+  color: var(--cream-text); max-width: 680px; background: #fff;
+}
+
+/* ── SOLUTION ── */
+#solution {}
+.solution-statement {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(1.4rem, 3vw, 2.2rem);
+  font-weight: 700; letter-spacing: -0.02em; line-height: 1.2;
+  max-width: 780px; margin-bottom: 36px;
+}
+.solution-statement em { font-style: normal; color: var(--accent); }
+.solution-pillars {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  max-width: 740px; border: 1px solid var(--border);
+  border-radius: var(--radius); overflow: hidden;
+}
+.pillar {
+  padding: 28px 24px; background: var(--bg2);
+  border-right: 1px solid var(--border); transition: background 0.2s;
+}
+.pillar:last-child { border-right: none; }
+.pillar:hover { background: var(--bg3); }
+.pillar-num {
+  font-family: 'Syne', sans-serif; font-size: 1.8rem; font-weight: 800;
+  color: var(--accent); opacity: 0.35; line-height: 1; margin-bottom: 10px;
+}
+.pillar h4 { font-family: 'Syne', sans-serif; font-size: 0.97rem; font-weight: 700; margin-bottom: 5px; }
+.pillar p { font-size: 0.83rem; color: var(--muted); }
+
+/* ── SERVICES ── */
+#services { background: var(--bg2); }
+.services-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 18px; max-width: 1100px;
+}
+.service-card {
+  border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 32px 28px; background: var(--bg);
+  transition: border-color 0.25s, transform 0.25s;
+  position: relative; display: flex; flex-direction: column;
+}
+.service-card:hover { border-color: rgba(255,79,31,0.3); transform: translateY(-3px); }
+.service-card.featured {
+  border-color: rgba(255,79,31,0.45);
+  background: linear-gradient(160deg, rgba(255,79,31,0.06) 0%, var(--bg) 60%);
+}
+.featured-badge {
+  position: absolute; top: 18px; right: 18px;
+  background: var(--accent); color: #fff;
+  font-size: 0.65rem; font-weight: 600; letter-spacing: 0.06em;
+  text-transform: uppercase; padding: 3px 9px; border-radius: 100px;
+}
+.service-num {
+  font-family: 'Syne', sans-serif; font-size: 0.72rem; font-weight: 700;
+  letter-spacing: 0.08em; color: var(--accent); margin-bottom: 12px;
+}
+.service-card h3 {
+  font-family: 'Syne', sans-serif; font-size: 1.28rem; font-weight: 800;
+  margin-bottom: 5px; letter-spacing: -0.02em;
+}
+.service-tagline { font-size: 0.85rem; color: var(--muted); font-style: italic; margin-bottom: 18px; }
+.service-desc { font-size: 0.875rem; color: var(--muted); margin-bottom: 20px; line-height: 1.6; flex: 1; }
+.service-features { list-style: none; }
+.service-features li {
+  display: flex; align-items: flex-start; gap: 9px;
+  font-size: 0.85rem; padding: 6px 0;
+  border-bottom: 1px solid var(--border);
+  color: var(--muted); line-height: 1.4;
+}
+.service-features li:last-child { border-bottom: none; }
+.service-features li::before { content: '✓'; color: var(--accent); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+.services-cta {
+  margin-top: 36px; padding: 22px 26px;
+  border: 1px solid var(--border); border-radius: var(--radius);
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 20px; flex-wrap: wrap; max-width: 1100px; background: var(--bg3);
+}
+.services-cta p { font-size: 0.93rem; color: var(--muted); font-style: italic; }
+
+/* ── PORTFOLIO — CREAM ── */
+#portfolio { background: var(--cream); color: var(--cream-text); }
+#portfolio .section-title { color: var(--cream-text); }
+.portfolio-intro { font-size: 0.97rem; color: var(--cream-muted); max-width: 600px; margin-bottom: 48px; }
+.portfolio-grid { display: flex; flex-direction: column; gap: 20px; max-width: 960px; }
+.portfolio-card {
+  border: 1px solid var(--border-c); border-radius: var(--radius);
+  overflow: hidden; background: #fff;
+  transition: border-color 0.25s, box-shadow 0.25s;
+}
+.portfolio-card:hover {
+  border-color: rgba(255,79,31,0.25);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+}
+.portfolio-header {
+  display: flex; align-items: flex-start;
+  justify-content: space-between; gap: 16px;
+  padding: 24px 26px 18px; flex-wrap: wrap;
+}
+.portfolio-sector {
+  display: inline-block; font-size: 0.68rem; font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--accent); background: rgba(255,79,31,0.08);
+  padding: 3px 10px; border-radius: 100px; margin-bottom: 8px;
+}
+.portfolio-card h3 {
+  font-family: 'Syne', sans-serif; font-size: 1.05rem; font-weight: 800;
+  letter-spacing: -0.02em; margin-bottom: 3px; color: var(--cream-text);
+}
+.portfolio-objetivo { font-size: 0.8rem; color: var(--cream-muted); font-style: italic; }
+.portfolio-link {
+  color: var(--accent); font-size: 0.82rem; font-weight: 500;
+  text-decoration: none; display: flex; align-items: center; gap: 5px;
+  white-space: nowrap; padding: 7px 14px;
+  border: 1px solid rgba(255,79,31,0.3); border-radius: 100px;
+  transition: background 0.2s, color 0.2s;
+  align-self: flex-start; flex-shrink: 0;
+}
+.portfolio-link:hover { background: var(--accent); color: #fff; }
+.portfolio-preview {
+  border-top: 1px solid var(--border-c);
+  border-bottom: 1px solid var(--border-c);
+  overflow: hidden; background: var(--cream2);
+}
+.portfolio-preview img {
+  width: 100%; display: block;
+  height: 220px; object-fit: cover; object-position: top;
+  transition: transform 0.4s ease;
+}
+.portfolio-card:hover .portfolio-preview img { transform: scale(1.02); }
+.portfolio-body {
+  padding: 18px 26px 22px;
+  font-size: 0.875rem; color: var(--cream-muted); line-height: 1.65;
+}
+
+/* ── PROCESS ── */
+#process { background: var(--bg2); }
+.process-steps {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  max-width: 900px; position: relative;
+}
+.process-step { padding: 32px 28px; position: relative; }
+.process-step:not(:last-child)::after {
+  content: ''; position: absolute; top: 48px; right: 0;
+  width: 1px; height: calc(100% - 80px); background: var(--border);
+}
+.step-num {
+  font-family: 'Syne', sans-serif; font-size: 3rem; font-weight: 800;
+  color: var(--accent); opacity: 0.15; line-height: 1; margin-bottom: 14px;
+}
+.step-time {
+  font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--accent); font-weight: 600; margin-bottom: 7px;
+}
+.process-step h3 { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; margin-bottom: 9px; }
+.process-step p { font-size: 0.855rem; color: var(--muted); line-height: 1.6; }
+.process-tag {
+  margin-top: 44px; display: inline-flex; align-items: center;
+  gap: 18px; padding: 13px 22px;
+  background: var(--bg3); border: 1px solid var(--border); border-radius: 100px;
+}
+.process-tag-item {
+  display: flex; align-items: center; gap: 9px;
+  font-size: 0.84rem; color: var(--muted);
+}
+.process-dot {
+  width: 7px; height: 7px; min-width: 7px;
+  border-radius: 50%; background: var(--accent); flex-shrink: 0;
+}
+.process-divider { width: 1px; height: 16px; background: var(--border); flex-shrink: 0; }
+
+/* ── ABOUT — CREAM ── */
+#about-wrap { background: var(--cream); padding: 90px 5vw; }
+#about {
+  display: grid; grid-template-columns: 1fr 1.4fr;
+  gap: 72px; align-items: center;
+  max-width: 1000px; margin: 0 auto;
+}
+.about-photo-placeholder {
+  aspect-ratio: 4/5; background: var(--cream2); border-radius: 16px;
+  border: 1px solid var(--border-c);
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: center; gap: 10px; color: var(--cream-muted);
+  font-size: 0.82rem; text-align: center; padding: 24px;
+}
+.photo-icon {
+  width: 52px; height: 52px; border-radius: 50%;
+  background: rgba(255,79,31,0.08);
+  display: flex; align-items: center; justify-content: center; font-size: 1.4rem;
+}
+#about-wrap .section-label { color: var(--accent); }
+#about-wrap .section-title { color: var(--cream-text); max-width: 100%; }
+.about-body { font-size: 0.97rem; color: var(--cream-muted); line-height: 1.72; margin-bottom: 22px; }
+.about-body strong { color: var(--cream-text); font-weight: 500; }
+.about-highlight {
+  padding: 18px 22px; background: #fff;
+  border: 1px solid var(--border-c); border-left: 3px solid var(--accent);
+  border-radius: var(--radius);
+  font-size: 0.93rem; color: var(--cream-text); font-style: italic;
+}
+
+/* ── FAQ ── */
+#faq { background: var(--bg2); }
+.faq-list { max-width: 760px; }
+.faq-item { border-bottom: 1px solid var(--border); }
+.faq-q {
+  width: 100%; background: none; border: none; color: var(--text);
+  font-family: 'DM Sans', sans-serif; font-size: 0.97rem; font-weight: 500;
+  text-align: left; padding: 20px 0; cursor: pointer;
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 20px; transition: color 0.2s;
+}
+.faq-q:hover { color: var(--accent); }
+.faq-icon {
+  width: 24px; height: 24px; min-width: 24px; border-radius: 50%;
+  border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.95rem; color: var(--accent);
+  transition: transform 0.3s, background 0.2s;
+}
+.faq-item.open .faq-icon { transform: rotate(45deg); background: var(--accent); border-color: var(--accent); color: #fff; }
+.faq-a {
+  max-height: 0; overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.3s;
+  font-size: 0.91rem; color: var(--muted); line-height: 1.7;
+}
+.faq-item.open .faq-a { max-height: 200px; padding-bottom: 20px; }
+
+/* ── CTA ── */
+#cta { text-align: center; padding: 110px 5vw; position: relative; overflow: hidden; }
+#cta::before {
+  content: ''; position: absolute;
+  width: 700px; height: 700px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,79,31,0.09) 0%, transparent 65%);
+  top: 50%; left: 50%; transform: translate(-50%,-50%); pointer-events: none;
+}
+.cta-label { display: block; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: 18px; }
+.cta-h2 { font-family: 'Syne', sans-serif; font-size: clamp(2rem, 5vw, 4rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.05; margin-bottom: 18px; }
+.cta-sub { font-size: 1.02rem; color: var(--muted); max-width: 460px; margin: 0 auto 40px; }
+.cta-buttons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 28px; }
+.btn-outline {
+  display: inline-flex; align-items: center; gap: 8px;
+  border: 1px solid var(--border); color: var(--text);
+  font-weight: 500; font-size: 0.93rem; padding: 13px 26px;
+  border-radius: 100px; text-decoration: none; transition: border-color 0.2s;
+}
+.btn-outline:hover { border-color: rgba(255,255,255,0.25); }
+.cta-trust { font-size: 0.78rem; color: var(--muted); }
+
+/* ── FOOTER ── */
+footer {
+  border-top: 1px solid var(--border); padding: 30px 5vw;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 14px; font-size: 0.8rem; color: var(--muted);
+}
+footer a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
+footer a:hover { color: var(--text); }
+.footer-brand { font-family: 'Syne', sans-serif; font-weight: 700; color: var(--text); }
+.footer-brand .dot { color: var(--accent); }
+.footer-links { display: flex; gap: 18px; align-items: center; }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
+@keyframes slideUp { from { opacity:0; transform:translateY(100%); } to { opacity:1; transform:translateY(0); } }
+
+/* ── RESPONSIVE TABLET ── */
+@media (max-width: 960px) {
+  #hero { flex-direction: column; align-items: flex-start; padding: 100px 5vw 72px; }
+  .hero-visual { display: none; }
+  .hero-h1 { font-size: clamp(2.4rem, 6vw, 4rem); }
+  .services-grid { grid-template-columns: 1fr; max-width: 540px; }
+  .solution-pillars { grid-template-columns: 1fr; }
+  .pillar { border-right: none; border-bottom: 1px solid var(--border); }
+  .pillar:last-child { border-bottom: none; }
+  .process-steps { grid-template-columns: 1fr; }
+  .process-step:not(:last-child)::after { display: none; }
+  #about { grid-template-columns: 1fr; gap: 36px; max-width: 560px; }
+  .about-photo-placeholder { aspect-ratio: 3/2; max-height: 250px; }
+}
+
+/* ── RESPONSIVE MOBILE ── */
+@media (max-width: 640px) {
+  nav { padding: 0 4vw; }
+  .nav-logo { font-size: 0.88rem; }
+  section { padding: 68px 4vw; }
+  #hero { padding: 92px 4vw 60px; }
+  #about-wrap { padding: 68px 4vw; }
+
+  .hero-ctas { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .hero-trust { gap: 12px; }
+  .trust-item { font-size: 0.75rem; }
+
+  .services-grid { max-width: 100%; }
+  .service-card { padding: 24px 20px; }
+
+  .portfolio-header { flex-direction: column; gap: 10px; }
+  .portfolio-header, .portfolio-body { padding-left: 18px; padding-right: 18px; }
+  .portfolio-preview img { height: 160px; }
+
+  .process-tag { flex-direction: column; align-items: flex-start; gap: 12px; border-radius: 12px; padding: 16px 20px; width: fit-content; }
+  .process-divider { display: none; }
+
+  .cta-buttons { flex-direction: column; align-items: center; }
+  .btn-primary, .btn-outline { width: 100%; max-width: 320px; justify-content: center; }
+
+  footer { flex-direction: column; align-items: flex-start; }
+  .footer-links { flex-wrap: wrap; gap: 12px; }
+
+  .pain-conclusion { padding: 18px; }
+  .services-cta { flex-direction: column; align-items: flex-start; }
+  .faq-q { font-size: 0.9rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <a href="#about-wrap" class="nav-logo">Antonio Di Pinto<span class="dot">.</span></a>
+  <a href="#cta" class="nav-cta">Hablemos →</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-glow-2"></div>
+
+  <div class="hero-content">
+    <p class="hero-tag">Diseño web, Copy &amp; Funnels</p>
+    <h1 class="hero-h1">
+      <span class="line"><span>Tu negocio merece</span></span>
+      <span class="line"><span>una página que trabaje</span></span>
+      <span class="line"><span>por ti.</span></span>
+    </h1>
+    <p class="hero-sub">Diseño landing pages con copy estratégico y estructura de funnel para negocios locales que quieren resultados — no solo una web bonita.</p>
+    <div class="hero-ctas">
+      <a href="#cta" class="btn-primary">
+        Cuéntame tu proyecto
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="#portfolio" class="btn-secondary">
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M4 9l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Ver proyectos
+      </a>
+    </div>
+    <div class="hero-trust">
+      <span class="trust-item">Respuesta en menos de 24h</span>
+      <span class="trust-item">Entrega en 5–8 días</span>
+      <span class="trust-item">Estrategia incluida</span>
+    </div>
+  </div>
+
+  <!-- Mockup — desktop only -->
+  <div class="hero-visual">
+    <!-- Arrow 1: top-left, points right toward image -->
+    <div class="hero-arrow-1">
+      <svg width="80" height="60" viewBox="0 0 80 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 52 C10 20, 40 8, 72 14" stroke="#FF4F1F" stroke-width="2" stroke-dasharray="4 3" fill="none" opacity="0.5"/>
+        <path d="M68 8 L74 16 L62 17" stroke="#FF4F1F" stroke-width="2" fill="none" opacity="0.5"/>
+      </svg>
+    </div>
+    <!-- Arrow 2: bottom-left, points right toward image -->
+    <div class="hero-arrow-2">
+      <svg width="80" height="56" viewBox="0 0 80 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 8 C12 36, 42 48, 72 44" stroke="#FF4F1F" stroke-width="2" stroke-dasharray="4 3" fill="none" opacity="0.5"/>
+        <path d="M68 38 L74 46 L62 46" stroke="#FF4F1F" stroke-width="2" fill="none" opacity="0.5"/>
+      </svg>
+    </div>
+    <img
+      class="hero-mockup"
+      src="https://res.cloudinary.com/dtpdekplo/image/upload/v1778591165/857_1x_shots_so_h5uz2i.png"
+      alt="Ejemplo de landing page — Antonio Di Pinto"
+      loading="eager"
+    />
+  </div>
+</section>
+
+<!-- PAIN — CREAM -->
+<section id="pain">
+  <div class="reveal">
+    <span class="section-label">El problema</span>
+    <h2 class="section-title">"Tengo web… pero no me llega nada."</h2>
+  </div>
+  <p class="pain-intro reveal">Es el problema más común que veo en negocios de Tenerife y de toda España. Tienen presencia online. A veces hasta invierten en redes o en anuncios. Pero la página no convierte. No genera reservas, no capta leads, no vende.</p>
+  <ul class="pain-list reveal">
+    <li><span class="pain-icon">✕</span><span>Tu web la hizo alguien que sabe de diseño, <strong>pero no de ventas.</strong></span></li>
+    <li><span class="pain-icon">✕</span><span>Tienes Instagram activo, pero el link de tu bio <strong>no lleva a ningún sitio útil.</strong></span></li>
+    <li><span class="pain-icon">✕</span><span>Lanzaste una campaña de ADS y el dinero <strong>desapareció sin resultados.</strong></span></li>
+    <li><span class="pain-icon">✕</span><span>Enviaste emails a tu lista y nadie <strong>hizo clic en nada.</strong></span></li>
+    <li><span class="pain-icon">✕</span><span>Tu página existe, pero <strong>no le habla a nadie en concreto.</strong></span></li>
+  </ul>
+  <div class="pain-conclusion reveal">El problema no es el tráfico. Es lo que pasa después de que alguien llega a tu página.</div>
+</section>
+
+<!-- SOLUTION -->
+<section id="solution">
+  <span class="section-label reveal">La diferencia</span>
+  <p class="solution-statement reveal">Una landing page estratégica no es un catálogo.<br>Es una <em>conversación estructurada</em> que guía al visitante desde "¿quién eres tú?" hasta "<em>quiero esto ahora</em>".</p>
+  <p class="section-sub reveal">No solo diseño. No solo redacto. Construyo el sistema completo — pensado para tu sector, tu cliente y tu objetivo concreto.</p>
+  <div class="solution-pillars reveal">
+    <div class="pillar"><div class="pillar-num">01</div><h4>Diseño</h4><p>Visual que guía, no solo decora.</p></div>
+    <div class="pillar"><div class="pillar-num">02</div><h4>Copy</h4><p>Palabras elegidas para mover al lector.</p></div>
+    <div class="pillar"><div class="pillar-num">03</div><h4>Funnel</h4><p>Estructura que convierte visitas en clientes.</p></div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <span class="section-label reveal">Servicios</span>
+  <h2 class="section-title reveal">Lo que puedo hacer por tu negocio</h2>
+  <div class="services-grid reveal">
+    <div class="service-card">
+      <div class="service-num">01</div>
+      <h3>Landing Page</h3>
+      <p class="service-tagline">Para quien necesita una página que convierta visitantes en clientes.</p>
+      <p class="service-desc">Una LP diseñada desde cero con copy estratégico incluido. Ideal para bio de Instagram, campaña puntual o captación de leads.</p>
+      <ul class="service-features">
+        <li>Diseño visual adaptado a tu marca</li>
+        <li>Copy escrito para convertir</li>
+        <li>Optimizada para móvil</li>
+        <li>Entrega en 5–8 días</li>
+      </ul>
+    </div>
+    <div class="service-card">
+      <div class="service-num">02</div>
+      <h3>LP + Publicidad</h3>
+      <p class="service-tagline">Para quien quiere tráfico cualificado desde el primer día.</p>
+      <p class="service-desc">Combino la landing con una campaña de anuncios configurada para captar clientes reales, no solo clics.</p>
+      <ul class="service-features">
+        <li>Todo lo del plan anterior</li>
+        <li>Segmentación y configuración de campaña</li>
+        <li>Textos y creatividades para los anuncios</li>
+        <li>Seguimiento inicial y ajustes</li>
+      </ul>
+    </div>
+    <div class="service-card featured">
+      <span class="featured-badge">Más completo</span>
+      <div class="service-num">03</div>
+      <h3>Funnel Completo</h3>
+      <p class="service-tagline">Para quien quiere un sistema que trabaja solo.</p>
+      <p class="service-desc">LP + anuncios + email marketing automatizado para nutrir leads y cerrar ventas en piloto automático.</p>
+      <ul class="service-features">
+        <li>Todo lo de los planes anteriores</li>
+        <li>Secuencia de emails automatizada</li>
+        <li>Mailchimp, Boost CRM, ActiveCampaign…</li>
+        <li>Diseño de templates de email</li>
+        <li>Creatividades para Meta Ads</li>
+        <li>Estrategia de contenido para el funnel</li>
+      </ul>
+    </div>
+  </div>
+  <div class="services-cta reveal">
+    <p><em>¿No sabes qué plan necesitas? Cuéntame tu situación y te lo digo en 10 minutos.</em></p>
+    <a href="#cta" class="btn-primary">Hablemos →</a>
+  </div>
+</section>
+
+<!-- PORTFOLIO — CREAM -->
+<section id="portfolio">
+  <span class="section-label reveal">Proyectos</span>
+  <h2 class="section-title reveal">Así es como trabajo.<br>Tres sectores. Tres objetivos distintos.</h2>
+  <p class="portfolio-intro reveal">Proyectos de demostración que muestran mi metodología aplicada a casos reales. Cada uno parte de un problema específico y construye una solución estratégica diferente.</p>
+  <div class="portfolio-grid reveal">
+
+    <div class="portfolio-card">
+      <div class="portfolio-header">
+        <div class="portfolio-meta">
+          <span class="portfolio-sector">Belleza · Bio de Instagram</span>
+          <h3>Convertir seguidores en clientas sin fricción</h3>
+          <p class="portfolio-objetivo">Objetivo: LP para bio de Instagram que genera reservas directas</p>
+        </div>
+        <a href="https://albabyalbany.netlify.app/" target="_blank" class="portfolio-link">Ver proyecto <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M4 2h6v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+      <div class="portfolio-preview">
+        <img src="https://res.cloudinary.com/dtpdekplo/image/upload/v1778591165/857_1x_shots_so_h5uz2i.png" alt="Landing page Nail Art & Belleza" loading="lazy" />
+      </div>
+      <div class="portfolio-body">Una profesional de nail art con agenda llena y más de 100 reseñas positivas. El problema clásico: toda esa credibilidad no aparecía en ningún sitio que el cliente potencial pudiera ver antes de reservar. Diseñé una LP emocional y directa que muestra el trabajo, habla al cliente ideal y dirige al botón de reserva en los primeros segundos.</div>
+    </div>
+
+    <div class="portfolio-card">
+      <div class="portfolio-header">
+        <div class="portfolio-meta">
+          <span class="portfolio-sector">Restaurante · Lead Gen + ADS</span>
+          <h3>Llenar mesas en días valle con cupón 2×1</h3>
+          <p class="portfolio-objetivo">Objetivo: LP de captación de leads + campaña de anuncios</p>
+        </div>
+        <a href="https://pizzeriamanamme.netlify.app/" target="_blank" class="portfolio-link">Ver proyecto <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M4 2h6v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+      <div class="portfolio-preview">
+        <img src="https://res.cloudinary.com/dtpdekplo/image/upload/v1778591165/857_1x_shots_so_h5uz2i.png" alt="Landing page Pizzeria Manammè" loading="lazy" />
+      </div>
+      <div class="portfolio-body">Una pizzería napolitana con tres locales y más de 2.000 reseñas en Google. El reto: convertir esa reputación en una campaña concreta que genere reservas reales de lunes a miércoles. Construí una LP de captura con copy basado en el problema real del comensal y un cupón 2×1 como gancho de entrada al funnel.</div>
+    </div>
+
+    <div class="portfolio-card">
+      <div class="portfolio-header">
+        <div class="portfolio-meta">
+          <span class="portfolio-sector">Fisioterapia · Reservas sector salud</span>
+          <h3>Captar pacientes con dolor crónico que ya han probado de todo</h3>
+          <p class="portfolio-objetivo">Objetivo: reservas directas por WhatsApp para pacientes específicos</p>
+        </div>
+        <a href="https://santacruzfisioterapia.netlify.app/" target="_blank" class="portfolio-link">Ver proyecto <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M4 2h6v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+      <div class="portfolio-preview">
+        <img src="https://res.cloudinary.com/dtpdekplo/image/upload/v1778591165/857_1x_shots_so_h5uz2i.png" alt="Landing page Fisioterapia Santa Cruz" loading="lazy" />
+      </div>
+      <div class="portfolio-body">El sector médico tiene una dificultad específica: el paciente llega con desconfianza acumulada y pocas ganas de probar "otro especialista más". Diseñé una LP que habla directamente a ese estado emocional, identifica la situación, explica el método con precisión clínica y elimina la fricción de pedir cita.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <span class="section-label reveal">Cómo trabajo</span>
+  <h2 class="section-title reveal">Sin reuniones interminables.<br>Sin sorpresas.</h2>
+  <div class="process-steps reveal">
+    <div class="process-step">
+      <div class="step-num">01</div>
+      <p class="step-time">Día 1</p>
+      <h3>Cuéntame tu proyecto</h3>
+      <p>Hablamos por WhatsApp o llamada. Me cuentas qué necesitas, a quién le vendes y cuál es tu objetivo. En 24h tengo una propuesta clara para ti.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-num">02</div>
+      <p class="step-time">Días 2–6</p>
+      <h3>Diseño, copy y estructura</h3>
+      <p>Me encargo de todo: investigación del sector, redacción del copy, diseño de la página y estructura del funnel. Tú revisas, yo ajusto.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-num">03</div>
+      <p class="step-time">Días 7–8</p>
+      <h3>Publicación y entrega</h3>
+      <p>La página queda activa y lista. Si el proyecto incluye ADS o emails, lo configuramos juntos y te explico cómo funciona todo.</p>
+    </div>
+  </div>
+  <div class="process-tag reveal">
+    <div class="process-tag-item"><span class="process-dot"></span><span>Entrega media: 5–8 días</span></div>
+    <div class="process-divider"></div>
+    <div class="process-tag-item"><span class="process-dot"></span><span>Revisiones incluidas</span></div>
+  </div>
+</section>
+
+<!-- ABOUT — CREAM -->
+<div id="about-wrap">
+  <div id="about" class="reveal">
+    <div class="about-photo-placeholder">
+      <div class="photo-icon">📸</div>
+      <p>Añade aquí tu foto real</p>
+      <p style="font-size:0.73rem;max-width:180px;text-align:center;color:var(--cream-muted)">Una foto tuya trabajando genera más confianza que cualquier ilustración</p>
+    </div>
+    <div class="about-text">
+      <span class="section-label">Sobre mí</span>
+      <h2 class="section-title">Soy Antonio Di Pinto.</h2>
+      <p class="about-body">
+        Diseñador web y estratega de funnels freelance con <strong>más de 4 años de experiencia en el mundo del marketing</strong>.<br><br>
+        <strong>No soy una agencia. No hay intermediarios.</strong> Cuando contratas conmigo, trabajas directamente conmigo — desde la primera llamada hasta la entrega final.<br><br>
+        Trabajo con negocios locales, profesionales independientes y agencias publicitarias que quieren crecer sin depender de la suerte.
+      </p>
+      <div class="about-highlight">"Una landing page solo funciona si el diseño, el copy y la estrategia van en la misma dirección. Por eso me encargo de los tres."</div>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<section id="faq">
+  <span class="section-label reveal">Preguntas frecuentes</span>
+  <h2 class="section-title reveal">Todo lo que necesitas saber</h2>
+  <div class="faq-list reveal">
+    <div class="faq-item"><button class="faq-q">¿Cuánto cuesta una landing page? <span class="faq-icon">+</span></button><div class="faq-a">Depende del proyecto. Antes de darte un número, necesito entender qué quieres conseguir. Hablamos 10 minutos y te doy una propuesta sin compromiso.</div></div>
+    <div class="faq-item"><button class="faq-q">¿Cuánto tiempo tardas en entregar? <span class="faq-icon">+</span></button><div class="faq-a">Entre 5 y 8 días para una landing page estándar. Los proyectos con funnel completo pueden tardar un poco más según la complejidad.</div></div>
+    <div class="faq-item"><button class="faq-q">¿Necesito tener ya el diseño o los textos? <span class="faq-icon">+</span></button><div class="faq-a">No. Me encargo del copy (los textos) y del diseño. Solo necesito información sobre tu negocio y tu cliente ideal.</div></div>
+    <div class="faq-item"><button class="faq-q">¿Puedo pedirte cambios después de la entrega? <span class="faq-icon">+</span></button><div class="faq-a">Sí. Incluyo rondas de revisión en todos los proyectos. El objetivo es que quedes 100% satisfecho.</div></div>
+    <div class="faq-item"><button class="faq-q">¿Trabajas solo con negocios de Tenerife? <span class="faq-icon">+</span></button><div class="faq-a">No. Trabajo de forma remota con clientes de toda España y también en otros países hispanohablantes.</div></div>
+    <div class="faq-item"><button class="faq-q">¿Trabajas con agencias en modo white label? <span class="faq-icon">+</span></button><div class="faq-a">Sí. Si tienes una agencia o gestionas clientes de terceros, puedo entregarle el proyecto bajo tu marca sin que el cliente final sepa que he participado. Todo el proceso es discreto y profesional.</div></div>
+    <div class="faq-item"><button class="faq-q">¿Qué pasa si no sé qué plan necesito? <span class="faq-icon">+</span></button><div class="faq-a">Cuéntame tu situación y te lo digo yo. A veces una simple LP es suficiente. Otras veces tiene más sentido un funnel completo. Lo valoramos juntos.</div></div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section id="cta">
+  <span class="cta-label reveal">¿Hablamos?</span>
+  <h2 class="cta-h2 reveal">¿Tienes un proyecto<br>en mente?</h2>
+  <p class="cta-sub reveal">No necesito una reunión larga. Con 10 minutos tengo suficiente para entender tu proyecto y decirte si puedo ayudarte.</p>
+  <div class="cta-buttons reveal">
+    <a href="https://wa.me/TUNUMERO" target="_blank" class="btn-primary">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Escríbeme por WhatsApp
+    </a>
+    <a href="mailto:TU@EMAIL.COM" class="btn-outline">Déjame tus datos →</a>
+  </div>
+  <p class="cta-trust reveal">Sin compromiso · Respuesta en menos de 24h</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <span class="footer-brand">Antonio Di Pinto<span class="dot">.</span></span>
+    <span style="margin-left:8px;">· Diseño web, Copy &amp; Funnels · Tenerife</span>
+  </div>
+  <div class="footer-links">
+    <a href="https://instagram.com/antonio.di.pinto" target="_blank">@antonio.di.pinto</a>
+    <a href="mailto:TU@EMAIL.COM">Email</a>
+    <span>© 2026</span>
+  </div>
+</footer>
+
+<script>
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach((el, i) => {
+    if (el.isIntersecting) {
+      el.target.style.transitionDelay = (i * 0.05) + 's';
+      el.target.classList.add('visible');
+      obs.unobserve(el.target);
+    }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+document.querySelectorAll('.faq-q').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.parentElement;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  });
+});
+
+window.addEventListener('scroll', () => {
+  document.querySelector('nav').style.background =
+    window.scrollY > 50 ? 'rgba(8,8,8,0.96)' : 'rgba(8,8,8,0.82)';
+}, { passive: true });
+</script>
+</body>
+</html>
