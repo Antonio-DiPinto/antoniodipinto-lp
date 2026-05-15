@@ -6,7 +6,7 @@
 <title>Antonio Di Pinto · Diseño web, Copy & Funnels · Tenerife</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,400;0,600;0,700;0,800;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
 <style>
 :root {
   --bg:          #080808;
@@ -49,7 +49,7 @@ nav {
   border-bottom: 1px solid var(--border); transition: background 0.3s;
 }
 .nav-logo {
-  font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem;
+  font-family: 'Urbanist', sans-serif; font-weight: 700; font-size: 1rem;
   color: var(--text); text-decoration: none; letter-spacing: -0.01em;
 }
 .nav-logo .dot { color: var(--accent); }
@@ -58,6 +58,7 @@ nav {
   font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 0.875rem;
   padding: 9px 20px; border-radius: 100px; text-decoration: none;
   transition: background 0.2s, transform 0.15s; white-space: nowrap;
+  display: inline-flex; align-items: center; gap: 7px;
 }
 .nav-cta:hover { background: var(--accent2); transform: translateY(-1px); }
 
@@ -90,7 +91,7 @@ nav {
   background: var(--accent); flex-shrink: 0;
 }
 .hero-h1 {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Urbanist', sans-serif;
   font-size: clamp(2.4rem, 4.5vw, 4.4rem);
   font-weight: 800; line-height: 1.05; letter-spacing: -0.03em;
   max-width: 640px; margin-bottom: 28px;
@@ -172,7 +173,7 @@ section { padding: 90px 5vw; }
   font-weight: 600; margin-bottom: 16px;
 }
 .section-title {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Urbanist', sans-serif;
   font-size: clamp(1.7rem, 3.5vw, 2.8rem);
   font-weight: 800; letter-spacing: -0.025em; line-height: 1.1;
   margin-bottom: 20px; max-width: 680px;
@@ -197,9 +198,9 @@ section { padding: 90px 5vw; }
 .pain-list li:last-child { border-bottom: none; }
 .pain-icon {
   width: 26px; height: 26px; min-width: 26px;
-  background: rgba(255,79,31,0.1); border-radius: 50%;
+  background: var(--accent); border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0; margin-top: 2px; font-size: 0.65rem; color: var(--accent); font-weight: 700;
+  flex-shrink: 0; margin-top: 2px; font-size: 0.65rem; color: rgba(80,10,0,0.85); font-weight: 900;
 }
 .pain-list strong { color: var(--cream-text); }
 .pain-list span { color: var(--cream-muted); }
@@ -212,7 +213,7 @@ section { padding: 90px 5vw; }
 
 /* ── SOLUTION ── */
 .solution-statement {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Urbanist', sans-serif;
   font-size: clamp(1.4rem, 3vw, 2.2rem);
   font-weight: 700; letter-spacing: -0.02em; line-height: 1.2;
   max-width: 780px; margin-bottom: 36px;
@@ -230,10 +231,10 @@ section { padding: 90px 5vw; }
 .pillar:last-child { border-right: none; }
 .pillar:hover { background: var(--bg3); }
 .pillar-num {
-  font-family: 'Syne', sans-serif; font-size: 1.8rem; font-weight: 800;
+  font-family: 'Urbanist', sans-serif; font-size: 1.8rem; font-weight: 800;
   color: var(--accent); opacity: 0.35; line-height: 1; margin-bottom: 10px;
 }
-.pillar h4 { font-family: 'Syne', sans-serif; font-size: 0.97rem; font-weight: 700; margin-bottom: 5px; }
+.pillar h4 { font-family: 'Urbanist', sans-serif; font-size: 0.97rem; font-weight: 700; margin-bottom: 5px; }
 .pillar p { font-size: 0.83rem; color: var(--muted); }
 
 /* ── SERVICES ── */
@@ -256,8 +257,8 @@ section { padding: 90px 5vw; }
   font-size: 0.65rem; font-weight: 600; letter-spacing: 0.06em;
   text-transform: uppercase; padding: 3px 9px; border-radius: 100px;
 }
-.service-num { font-family: 'Syne', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 12px; }
-.service-card h3 { font-family: 'Syne', sans-serif; font-size: 1.28rem; font-weight: 800; margin-bottom: 5px; letter-spacing: -0.02em; }
+.service-num { font-family: 'Urbanist', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 12px; }
+.service-card h3 { font-family: 'Urbanist', sans-serif; font-size: 1.28rem; font-weight: 800; margin-bottom: 5px; letter-spacing: -0.02em; }
 .service-tagline { font-size: 0.85rem; color: var(--muted); font-style: italic; margin-bottom: 18px; }
 .service-desc { font-size: 0.875rem; color: var(--muted); margin-bottom: 20px; line-height: 1.6; flex: 1; }
 .service-features { list-style: none; }
@@ -308,7 +309,7 @@ section { padding: 90px 5vw; }
   padding: 3px 10px; border-radius: 100px; margin-bottom: 9px;
 }
 .portfolio-card h3 {
-  font-family: 'Syne', sans-serif; font-size: 1.08rem; font-weight: 800;
+  font-family: 'Urbanist', sans-serif; font-size: 1.08rem; font-weight: 800;
   letter-spacing: -0.02em; margin-bottom: 4px; color: var(--cream-text);
 }
 .portfolio-objetivo { font-size: 0.8rem; color: var(--cream-muted); font-style: italic; margin-bottom: 14px; }
@@ -346,9 +347,9 @@ section { padding: 90px 5vw; }
   content: ''; position: absolute; top: 48px; right: 0;
   width: 1px; height: calc(100% - 80px); background: var(--border);
 }
-.step-num { font-family: 'Syne', sans-serif; font-size: 3rem; font-weight: 800; color: var(--accent); opacity: 0.15; line-height: 1; margin-bottom: 14px; }
+.step-num { font-family: 'Urbanist', sans-serif; font-size: 3rem; font-weight: 800; color: var(--accent); opacity: 0.15; line-height: 1; margin-bottom: 14px; }
 .step-time { font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: 7px; }
-.process-step h3 { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; margin-bottom: 9px; }
+.process-step h3 { font-family: 'Urbanist', sans-serif; font-size: 1rem; font-weight: 700; margin-bottom: 9px; }
 .process-step p { font-size: 0.855rem; color: var(--muted); line-height: 1.6; }
 .process-tag {
   margin-top: 44px; display: inline-flex; align-items: center;
@@ -362,6 +363,10 @@ section { padding: 90px 5vw; }
 /* ── ABOUT — CREAM ── */
 #about-wrap { background: var(--cream); padding: 90px 5vw; }
 #about { display: grid; grid-template-columns: 1fr 1.4fr; gap: 72px; align-items: center; max-width: 1000px; margin: 0 auto; }
+.about-photo-wrap {
+  aspect-ratio: 4/5; border-radius: 16px; overflow: hidden;
+}
+/* about-photo-placeholder kept for reference */
 .about-photo-placeholder {
   aspect-ratio: 4/5; background: var(--cream2); border-radius: 16px;
   border: 1px solid var(--border-c);
@@ -396,7 +401,7 @@ section { padding: 90px 5vw; }
 #cta { text-align: center; padding: 110px 5vw; position: relative; overflow: hidden; }
 #cta::before { content: ''; position: absolute; width: 700px; height: 700px; border-radius: 50%; background: radial-gradient(circle, rgba(255,79,31,0.09) 0%, transparent 65%); top: 50%; left: 50%; transform: translate(-50%,-50%); pointer-events: none; }
 .cta-label { display: block; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: 18px; }
-.cta-h2 { font-family: 'Syne', sans-serif; font-size: clamp(2rem, 5vw, 4rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.05; margin-bottom: 18px; }
+.cta-h2 { font-family: 'Urbanist', sans-serif; font-size: clamp(2rem, 5vw, 4rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.05; margin-bottom: 18px; }
 .cta-sub { font-size: 1.02rem; color: var(--muted); max-width: 460px; margin: 0 auto 40px; }
 .cta-buttons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 28px; }
 .btn-outline { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--border); color: var(--text); font-weight: 500; font-size: 0.93rem; padding: 13px 26px; border-radius: 100px; text-decoration: none; transition: border-color 0.2s; }
@@ -407,7 +412,7 @@ section { padding: 90px 5vw; }
 footer { border-top: 1px solid var(--border); padding: 30px 5vw; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; font-size: 0.8rem; color: var(--muted); }
 footer a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
 footer a:hover { color: var(--text); }
-.footer-brand { font-family: 'Syne', sans-serif; font-weight: 700; color: var(--text); }
+.footer-brand { font-family: 'Urbanist', sans-serif; font-weight: 700; color: var(--text); }
 .footer-brand .dot { color: var(--accent); }
 .footer-links { display: flex; gap: 18px; align-items: center; }
 
@@ -455,7 +460,7 @@ footer a:hover { color: var(--text); }
   .portfolio-header { padding: 20px 18px 14px; }
   .portfolio-body { padding: 14px 18px 20px; }
   .portfolio-preview { min-height: 0; order: 3; border-top: 1px solid var(--border-c); }
-  .portfolio-preview img { height: 220px; object-fit: cover; object-position: top; }
+  .portfolio-preview img { height: auto; width: 100%; object-fit: unset; }
 
   .process-tag { flex-direction: column; align-items: flex-start; gap: 12px; border-radius: 12px; padding: 16px 20px; width: fit-content; }
   .process-divider { display: none; }
@@ -477,7 +482,10 @@ footer a:hover { color: var(--text); }
 <!-- NAVBAR -->
 <nav>
   <a href="#about-wrap" class="nav-logo">Antonio Di Pinto<span class="dot">.</span></a>
-  <a href="#cta" class="nav-cta">Hablemos →</a>
+  <a href="https://wa.me/34604859267" target="_blank" class="nav-cta">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    WhatsApp
+  </a>
 </nav>
 
 <!-- HERO -->
@@ -609,7 +617,10 @@ footer a:hover { color: var(--text); }
   </div>
   <div class="services-cta reveal">
     <p><em>¿No sabes qué plan necesitas? Cuéntame tu situación y te lo digo en 10 minutos.</em></p>
-    <a href="#cta" class="btn-primary">Hablemos →</a>
+    <a href="https://wa.me/34604859267" target="_blank" class="btn-primary">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      WhatsApp
+    </a>
   </div>
 </section>
 
@@ -706,10 +717,12 @@ footer a:hover { color: var(--text); }
 <!-- ABOUT — CREAM -->
 <div id="about-wrap">
   <div id="about" class="reveal">
-    <div class="about-photo-placeholder">
-      <div class="photo-icon">📸</div>
-      <p>Añade aquí tu foto real</p>
-      <p style="font-size:0.73rem;max-width:180px;text-align:center;color:var(--cream-muted)">Una foto tuya trabajando genera más confianza que cualquier ilustración</p>
+    <div class="about-photo-wrap">
+      <img
+        src="https://res.cloudinary.com/dtpdekplo/image/upload/v1778755236/ChatGPT_Image_14_mag_2026_11_40_03_c4lsre.png"
+        alt="Antonio Di Pinto"
+        style="width:100%; height:100%; object-fit:cover; object-position:top; border-radius:16px; display:block; border:1px solid var(--border-c);"
+      />
     </div>
     <div class="about-text">
       <span class="section-label">Sobre mí</span>
@@ -745,7 +758,7 @@ footer a:hover { color: var(--text); }
   <h2 class="cta-h2 reveal">¿Tienes un proyecto<br>en mente?</h2>
   <p class="cta-sub reveal">No necesito una reunión larga. Con 10 minutos tengo suficiente para entender tu proyecto y decirte si puedo ayudarte.</p>
   <div class="cta-buttons reveal">
-    <a href="https://wa.me/TUNUMERO" target="_blank" class="btn-primary">
+    <a href="https://wa.me/34604859267" target="_blank" class="btn-primary">
       <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
       Escríbeme por WhatsApp
     </a>
