@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Antonio Di Pinto · Design web, Copy & Funnel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,400;0,600;0,700;0,800;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:          #080808;
+  --bg2:         #111111;
+  --bg3:         #181818;
+  --cream:       #F5F0E8;
+  --cream2:      #EDE8DF;
+  --cream-text:  #1A1816;
+  --cream-muted: #6B6560;
+  --accent:      #FF4F1F;
+  --accent2:     #FF7A50;
+  --text:        #F2EDE6;
+  --muted:       #7A7068;
+  --border:      rgba(255,255,255,0.08);
+  --border-c:    rgba(26,24,22,0.12);
+  --radius:      12px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 17px; line-height: 1.65;
+  overflow-x: hidden; -webkit-font-smoothing: antialiased;
+}
+body::before {
+  content: ''; position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.025; pointer-events: none; z-index: 9999;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 0 5vw; height: 64px;
+  display: flex; align-items: center; justify-content: space-between;
+  background: rgba(8,8,8,0.82);
+  backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--border); transition: background 0.3s;
+}
+.nav-logo {
+  font-family: 'Urbanist', sans-serif; font-weight: 700; font-size: 1rem;
+  color: var(--text); text-decoration: none; letter-spacing: -0.01em;
+}
+.nav-logo .dot { color: var(--accent); }
+.nav-cta {
+  background: var(--accent); color: #fff;
+  font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 0.875rem;
+  padding: 9px 20px; border-radius: 100px; text-decoration: none;
+  transition: background 0.2s, transform 0.15s; white-space: nowrap;
+  display: inline-flex; align-items: center; gap: 7px;
+}
+.nav-cta:hover { background: var(--accent2); transform: translateY(-1px); }
+
+/* ── HERO ── */
+#hero {
+  min-height: 100vh;
+  display: flex; flex-direction: row; align-items: center;
+  padding: 100px 5vw 80px; gap: 48px;
+  position: relative; overflow: hidden;
+}
+.hero-glow {
+  position: absolute; width: 700px; height: 700px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,79,31,0.11) 0%, transparent 70%);
+  top: -120px; right: -100px; pointer-events: none;
+}
+.hero-glow-2 {
+  position: absolute; width: 350px; height: 350px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,79,31,0.05) 0%, transparent 70%);
+  bottom: 60px; left: -60px; pointer-events: none;
+}
+.hero-content { flex: 1; min-width: 0; position: relative; z-index: 1; }
+.hero-tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 0.72rem; font-weight: 500; letter-spacing: 0.07em;
+  text-transform: uppercase; color: var(--muted); margin-bottom: 28px;
+  opacity: 0; animation: fadeUp 0.6s ease forwards 0.1s;
+}
+.hero-tag::before {
+  content: ''; width: 6px; height: 6px; border-radius: 50%;
+  background: var(--accent); flex-shrink: 0;
+}
+.hero-h1 {
+  font-family: 'Urbanist', sans-serif;
+  font-size: clamp(2.4rem, 4.5vw, 4.4rem);
+  font-weight: 800; line-height: 1.05; letter-spacing: -0.03em;
+  max-width: 640px; margin-bottom: 28px;
+}
+.hero-h1 .line { display: block; overflow: hidden; }
+.hero-h1 .line span {
+  display: block; opacity: 0; transform: translateY(100%);
+  animation: slideUp 0.7s cubic-bezier(0.22,1,0.36,1) forwards;
+}
+.hero-h1 .line:nth-child(1) span { animation-delay: 0.25s; }
+.hero-h1 .line:nth-child(2) span { animation-delay: 0.38s; }
+.hero-h1 .line:nth-child(3) span { animation-delay: 0.51s; color: var(--accent); }
+.hero-sub {
+  font-size: clamp(0.95rem, 1.8vw, 1.08rem); color: var(--muted);
+  max-width: 480px; margin-bottom: 40px;
+  opacity: 0; animation: fadeUp 0.6s ease forwards 0.65s;
+}
+.hero-ctas {
+  display: flex; gap: 14px; flex-wrap: wrap; align-items: center;
+  margin-bottom: 44px; opacity: 0; animation: fadeUp 0.6s ease forwards 0.78s;
+}
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--accent); color: #fff;
+  font-weight: 500; font-size: 0.95rem; padding: 13px 26px;
+  border-radius: 100px; text-decoration: none;
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+}
+.btn-primary:hover {
+  background: var(--accent2); transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(255,79,31,0.32);
+}
+.btn-secondary {
+  display: inline-flex; align-items: center; gap: 8px;
+  color: var(--muted); font-weight: 400; font-size: 0.95rem;
+  text-decoration: none; transition: color 0.2s;
+}
+.btn-secondary:hover { color: var(--text); }
+.btn-secondary svg { transition: transform 0.2s; }
+.btn-secondary:hover svg { transform: translateY(3px); }
+.hero-trust {
+  display: flex; gap: 24px; flex-wrap: wrap;
+  opacity: 0; animation: fadeUp 0.6s ease forwards 0.9s;
+}
+.trust-item {
+  display: flex; align-items: center; gap: 7px;
+  font-size: 0.8rem; color: var(--muted);
+}
+.trust-item::before { content: '✓'; color: var(--accent); font-weight: 700; }
+
+/* Hero visual — desktop only */
+.hero-visual {
+  flex: 0 0 52%; max-width: 600px;
+  position: relative; z-index: 1;
+  padding-bottom: 48px;
+  opacity: 0; animation: fadeUp 0.8s ease forwards 0.5s;
+}
+.hero-mockup { width: 100%; display: block; border-radius: 10px; }
+.hero-arrow-top { position: absolute; top: -40px; left: -52px; pointer-events: none; }
+.hero-arrow-bottom { position: absolute; bottom: 0; left: -52px; pointer-events: none; }
+
+/* ── SECTIONS COMMON ── */
+section { padding: 90px 5vw; }
+.section-label {
+  display: block; font-size: 0.7rem; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: 16px;
+}
+.section-title {
+  font-family: 'Urbanist', sans-serif;
+  font-size: clamp(1.7rem, 3.5vw, 2.8rem);
+  font-weight: 800; letter-spacing: -0.025em; line-height: 1.1;
+  margin-bottom: 20px; max-width: 680px;
+}
+.section-sub { font-size: 1.02rem; color: var(--muted); max-width: 540px; margin-bottom: 52px; }
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ── IL PROBLEMA — CREAM ── */
+#pain { background: var(--cream); color: var(--cream-text); }
+#pain .section-title { color: var(--cream-text); }
+.pain-intro { font-size: 1rem; color: var(--cream-muted); max-width: 620px; margin-bottom: 44px; }
+.pain-list { list-style: none; max-width: 680px; }
+.pain-list li {
+  display: flex; align-items: flex-start; gap: 14px;
+  padding: 18px 0; border-bottom: 1px solid var(--border-c);
+  font-size: 0.97rem; line-height: 1.55;
+}
+.pain-list li:last-child { border-bottom: none; }
+.pain-icon {
+  width: 26px; height: 26px; min-width: 26px;
+  background: var(--accent); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; margin-top: 2px; font-size: 0.65rem; color: rgba(80,10,0,0.85); font-weight: 900;
+}
+.pain-list strong { color: var(--cream-text); }
+.pain-list span { color: var(--cream-muted); }
+.pain-conclusion {
+  margin-top: 44px; padding: 24px 28px;
+  border: 1px solid var(--border-c); border-left: 3px solid var(--accent);
+  border-radius: var(--radius); font-size: 1.02rem;
+  color: var(--cream-text); max-width: 680px; background: #fff;
+}
+
+/* ── LA DIFFERENZA ── */
+.solution-statement {
+  font-family: 'Urbanist', sans-serif;
+  font-size: clamp(1.4rem, 3vw, 2.2rem);
+  font-weight: 700; letter-spacing: -0.02em; line-height: 1.2;
+  max-width: 780px; margin-bottom: 36px;
+}
+.solution-statement em { font-style: normal; color: var(--accent); }
+.solution-pillars {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  max-width: 740px; border: 1px solid var(--border);
+  border-radius: var(--radius); overflow: hidden;
+}
+.pillar { padding: 28px 24px; background: var(--bg2); border-right: 1px solid var(--border); transition: background 0.2s; }
+.pillar:last-child { border-right: none; }
+.pillar:hover { background: var(--bg3); }
+.pillar-num { font-family: 'Urbanist', sans-serif; font-size: 1.8rem; font-weight: 800; color: var(--accent); opacity: 0.35; line-height: 1; margin-bottom: 10px; }
+.pillar h4 { font-family: 'Urbanist', sans-serif; font-size: 0.97rem; font-weight: 700; margin-bottom: 5px; }
+.pillar p { font-size: 0.83rem; color: var(--muted); }
+
+/* ── SERVIZI ── */
+#services { background: var(--bg2); }
+.services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; max-width: 1100px; }
+.service-card {
+  border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 32px 28px; background: var(--bg);
+  transition: border-color 0.25s, transform 0.25s;
+  position: relative; display: flex; flex-direction: column;
+}
+.service-card:hover { border-color: rgba(255,79,31,0.3); transform: translateY(-3px); }
+.service-card.featured { border-color: rgba(255,79,31,0.45); background: linear-gradient(160deg, rgba(255,79,31,0.06) 0%, var(--bg) 60%); }
+.featured-badge { position: absolute; top: 18px; right: 18px; background: var(--accent); color: #fff; font-size: 0.65rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 9px; border-radius: 100px; }
+.service-num { font-family: 'Urbanist', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 12px; }
+.service-card h3 { font-family: 'Urbanist', sans-serif; font-size: 1.28rem; font-weight: 800; margin-bottom: 5px; letter-spacing: -0.02em; }
+.service-tagline { font-size: 0.85rem; color: var(--muted); font-style: italic; margin-bottom: 18px; }
+.service-desc { font-size: 0.875rem; color: var(--muted); margin-bottom: 20px; line-height: 1.6; flex: 1; }
+.service-features { list-style: none; }
+.service-features li { display: flex; align-items: flex-start; gap: 9px; font-size: 0.85rem; padding: 6px 0; border-bottom: 1px solid var(--border); color: var(--muted); line-height: 1.4; }
+.service-features li:last-child { border-bottom: none; }
+.service-features li::before { content: '✓'; color: var(--accent); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+.services-cta { margin-top: 36px; padding: 22px 26px; border: 1px solid var(--border); border-radius: var(--radius); display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; max-width: 1100px; background: var(--bg3); }
+.services-cta p { font-size: 0.93rem; color: var(--muted); font-style: italic; }
+
+/* ── PROGETTI — CREAM ── */
+#portfolio { background: var(--cream); color: var(--cream-text); }
+#portfolio .section-title { color: var(--cream-text); }
+.portfolio-intro { font-size: 0.97rem; color: var(--cream-muted); max-width: 600px; margin-bottom: 16px; }
+.portfolio-lang-note { font-size: 0.85rem; color: var(--cream-muted); font-style: italic; margin-bottom: 40px; }
+.portfolio-grid { display: flex; flex-direction: column; gap: 20px; max-width: 1060px; }
+.portfolio-card { border: 1px solid var(--border-c); border-radius: var(--radius); overflow: hidden; background: #fff; display: grid; grid-template-columns: 1fr 1fr; transition: border-color 0.25s, box-shadow 0.25s; }
+.portfolio-card:hover { border-color: rgba(255,79,31,0.25); box-shadow: 0 4px 28px rgba(0,0,0,0.08); }
+.portfolio-card-left { display: flex; flex-direction: column; border-right: 1px solid var(--border-c); }
+.portfolio-header { padding: 26px 28px 16px; }
+.portfolio-sector { display: inline-block; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); background: rgba(255,79,31,0.08); padding: 3px 10px; border-radius: 100px; margin-bottom: 9px; }
+.portfolio-card h3 { font-family: 'Urbanist', sans-serif; font-size: 1.08rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 4px; color: var(--cream-text); }
+.portfolio-objetivo { font-size: 0.8rem; color: var(--cream-muted); font-style: italic; margin-bottom: 14px; }
+.portfolio-link { display: inline-flex; align-items: center; gap: 5px; color: var(--accent); font-size: 0.82rem; font-weight: 500; text-decoration: none; padding: 7px 14px; border: 1px solid rgba(255,79,31,0.3); border-radius: 100px; transition: background 0.2s, color 0.2s; width: fit-content; }
+.portfolio-link:hover { background: var(--accent); color: #fff; }
+.portfolio-body { padding: 16px 28px 26px; font-size: 0.875rem; color: var(--cream-muted); line-height: 1.65; border-top: 1px solid var(--border-c); flex: 1; }
+.portfolio-preview { overflow: hidden; background: var(--cream2); min-height: 280px; }
+.portfolio-preview img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; transition: transform 0.4s ease; }
+.portfolio-card:hover .portfolio-preview img { transform: scale(1.03); }
+
+/* ── COME LAVORO ── */
+#process { background: var(--bg2); }
+.process-steps { display: grid; grid-template-columns: repeat(3, 1fr); max-width: 900px; }
+.process-step { padding: 32px 28px; position: relative; }
+.process-step:not(:last-child)::after { content: ''; position: absolute; top: 48px; right: 0; width: 1px; height: calc(100% - 80px); background: var(--border); }
+.step-num { font-family: 'Urbanist', sans-serif; font-size: 3rem; font-weight: 800; color: var(--accent); opacity: 0.15; line-height: 1; margin-bottom: 14px; }
+.step-time { font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: 7px; }
+.process-step h3 { font-family: 'Urbanist', sans-serif; font-size: 1rem; font-weight: 700; margin-bottom: 9px; }
+.process-step p { font-size: 0.855rem; color: var(--muted); line-height: 1.6; }
+.process-tag { margin-top: 44px; display: inline-flex; align-items: center; gap: 18px; padding: 13px 22px; background: var(--bg3); border: 1px solid var(--border); border-radius: 100px; }
+.process-tag-item { display: flex; align-items: center; gap: 9px; font-size: 0.84rem; color: var(--muted); }
+.process-dot { width: 7px; height: 7px; min-width: 7px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+.process-divider { width: 1px; height: 16px; background: var(--border); flex-shrink: 0; }
+
+/* ── CHI SONO — CREAM ── */
+#about-wrap { background: var(--cream); padding: 90px 5vw; }
+#about { display: grid; grid-template-columns: 1fr 1.4fr; gap: 72px; align-items: center; max-width: 1000px; margin: 0 auto; }
+.about-photo-wrap { aspect-ratio: 4/5; border-radius: 16px; overflow: hidden; }
+#about-wrap .section-label { color: var(--accent); }
+#about-wrap .section-title { color: var(--cream-text); max-width: 100%; }
+.about-body { font-size: 0.97rem; color: var(--cream-muted); line-height: 1.72; margin-bottom: 22px; }
+.about-body strong { color: var(--cream-text); font-weight: 500; }
+.about-highlight { padding: 18px 22px; background: #fff; border: 1px solid var(--border-c); border-left: 3px solid var(--accent); border-radius: var(--radius); font-size: 0.93rem; color: var(--cream-text); font-style: italic; }
+
+/* ── FAQ ── */
+#faq { background: var(--bg2); }
+.faq-list { max-width: 760px; }
+.faq-item { border-bottom: 1px solid var(--border); }
+.faq-q { width: 100%; background: none; border: none; color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 0.97rem; font-weight: 500; text-align: left; padding: 20px 0; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 20px; transition: color 0.2s; }
+.faq-q:hover { color: var(--accent); }
+.faq-icon { width: 24px; height: 24px; min-width: 24px; border-radius: 50%; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 0.95rem; color: var(--accent); transition: transform 0.3s, background 0.2s; }
+.faq-item.open .faq-icon { transform: rotate(45deg); background: var(--accent); border-color: var(--accent); color: #fff; }
+.faq-a { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.3s; font-size: 0.91rem; color: var(--muted); line-height: 1.7; }
+.faq-item.open .faq-a { max-height: 200px; padding-bottom: 20px; }
+
+/* ── CTA ── */
+#cta { text-align: center; padding: 110px 5vw; position: relative; overflow: hidden; }
+#cta::before { content: ''; position: absolute; width: 700px; height: 700px; border-radius: 50%; background: radial-gradient(circle, rgba(255,79,31,0.09) 0%, transparent 65%); top: 50%; left: 50%; transform: translate(-50%,-50%); pointer-events: none; }
+.cta-label { display: block; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: 18px; }
+.cta-h2 { font-family: 'Urbanist', sans-serif; font-size: clamp(2rem, 5vw, 4rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.05; margin-bottom: 18px; }
+.cta-sub { font-size: 1.02rem; color: var(--muted); max-width: 480px; margin: 0 auto 40px; }
+.cta-buttons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 28px; }
+.cta-trust { font-size: 0.78rem; color: var(--muted); }
+
+/* ── FOOTER ── */
+footer { border-top: 1px solid var(--border); padding: 30px 5vw; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; font-size: 0.8rem; color: var(--muted); }
+footer a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
+footer a:hover { color: var(--text); }
+.footer-brand { font-family: 'Urbanist', sans-serif; font-weight: 700; color: var(--text); }
+.footer-brand .dot { color: var(--accent); }
+.footer-links { display: flex; gap: 18px; align-items: center; }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
+@keyframes slideUp { from { opacity:0; transform:translateY(100%); } to { opacity:1; transform:translateY(0); } }
+
+/* ── RESPONSIVE TABLET ── */
+@media (max-width: 960px) {
+  #hero { flex-direction: column; align-items: flex-start; padding: 100px 5vw 72px; }
+  .hero-visual { display: none; }
+  .services-grid { grid-template-columns: 1fr; max-width: 540px; }
+  .solution-pillars { grid-template-columns: 1fr; }
+  .pillar { border-right: none; border-bottom: 1px solid var(--border); }
+  .pillar:last-child { border-bottom: none; }
+  .process-steps { grid-template-columns: 1fr; }
+  .process-step:not(:last-child)::after { display: none; }
+  #about { grid-template-columns: 1fr; gap: 36px; max-width: 560px; }
+  .about-photo-wrap { aspect-ratio: 3/2; max-height: 250px; }
+  .portfolio-card { grid-template-columns: 1fr; }
+  .portfolio-card-left { border-right: none; }
+  .portfolio-preview { min-height: 0; order: 3; border-top: 1px solid var(--border-c); }
+  .portfolio-preview img { height: 280px; }
+}
+
+/* ── RESPONSIVE MOBILE ── */
+@media (max-width: 640px) {
+  nav { padding: 0 4vw; }
+  .nav-logo { font-size: 0.88rem; }
+  section { padding: 68px 4vw; }
+  #hero { padding: 92px 4vw 60px; }
+  #about-wrap { padding: 68px 4vw; }
+  .hero-ctas { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .hero-trust { gap: 12px; }
+  .trust-item { font-size: 0.75rem; }
+  .services-grid { max-width: 100%; }
+  .service-card { padding: 24px 20px; }
+  .portfolio-card { grid-template-columns: 1fr; }
+  .portfolio-card-left { border-right: none; }
+  .portfolio-header { padding: 20px 18px 14px; }
+  .portfolio-body { padding: 14px 18px 20px; }
+  .portfolio-preview { min-height: 0; order: 3; border-top: 1px solid var(--border-c); }
+  .portfolio-preview img { height: auto; width: 100%; object-fit: unset; }
+  .process-tag { flex-direction: column; align-items: flex-start; gap: 12px; border-radius: 12px; padding: 16px 20px; width: fit-content; }
+  .process-divider { display: none; }
+  .cta-buttons { flex-direction: column; align-items: center; }
+  .btn-primary { width: 100%; max-width: 320px; justify-content: center; }
+  footer { flex-direction: column; align-items: flex-start; }
+  .footer-links { flex-wrap: wrap; gap: 12px; }
+  .pain-conclusion { padding: 18px; }
+  .services-cta { flex-direction: column; align-items: flex-start; }
+  .faq-q { font-size: 0.9rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <a href="#about-wrap" class="nav-logo">Antonio Di Pinto<span class="dot">.</span></a>
+  <a href="https://wa.me/34604859267?text=Ciao%20Antonio%2C%20ho%20un%20progetto%20in%20mente%20e%20vorrei%20parlartene." target="_blank" class="nav-cta">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    WhatsApp
+  </a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-glow-2"></div>
+  <div class="hero-content">
+    <p class="hero-tag">Design web, Copy &amp; Funnel</p>
+    <h1 class="hero-h1">
+      <span class="line"><span>Il tuo business merita</span></span>
+      <span class="line"><span>una pagina che lavori</span></span>
+      <span class="line"><span>per te.</span></span>
+    </h1>
+    <p class="hero-sub">Creo landing page con copy strategico e struttura di funnel per attività locali che vogliono risultati — non solo una bella pagina web.</p>
+    <div class="hero-ctas">
+      <a href="https://wa.me/34604859267?text=Ciao%20Antonio%2C%20ho%20un%20progetto%20in%20mente%20e%20vorrei%20parlartene." target="_blank" class="btn-primary">
+        Raccontami il tuo progetto
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="#portfolio" class="btn-secondary">
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M4 9l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Vedi i progetti
+      </a>
+    </div>
+    <div class="hero-trust">
+      <span class="trust-item">Risposta in meno di 24h</span>
+      <span class="trust-item">Consegna in 5–8 giorni</span>
+      <span class="trust-item">Strategia inclusa</span>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-arrow-top">
+      <svg width="90" height="64" viewBox="0 0 90 64" fill="none">
+        <path d="M6 58 C16 24, 52 6, 82 14" stroke="#FF4F1F" stroke-width="2" stroke-dasharray="5 3" fill="none" opacity="0.55"/>
+        <path d="M76 7 L84 16 L73 18" stroke="#FF4F1F" stroke-width="2" fill="none" opacity="0.55"/>
+      </svg>
+    </div>
+    <img class="hero-mockup" src="https://res.cloudinary.com/dtpdekplo/image/upload/v1778591165/857_1x_shots_so_h5uz2i.png" alt="Esempio landing page" loading="eager"/>
+    <div class="hero-arrow-bottom">
+      <svg width="90" height="64" viewBox="0 0 90 64" fill="none">
+        <path d="M6 6 C18 38, 52 56, 82 50" stroke="#FF4F1F" stroke-width="2" stroke-dasharray="5 3" fill="none" opacity="0.55"/>
+        <path d="M76 44 L84 52 L73 54" stroke="#FF4F1F" stroke-width="2" fill="none" opacity="0.55"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- IL PROBLEMA — CREAM -->
+<section id="pain">
+  <div class="reveal">
+    <span class="section-label">Il problema</span>
+    <h2 class="section-title">"Ho un sito… ma non mi arriva niente."</h2>
+  </div>
+  <p class="pain-intro reveal">È il problema più comune che vedo nelle attività italiane. Hanno una presenza online. A volte investono anche nei social o nella pubblicità. Ma la pagina non converte. Non genera prenotazioni, non raccoglie contatti, non vende.</p>
+  <ul class="pain-list reveal">
+    <li><span class="pain-icon">✕</span><span>Il tuo sito lo ha fatto qualcuno bravo con il design, <strong>ma non con la vendita.</strong></span></li>
+    <li><span class="pain-icon">✕</span><span>Hai Instagram attivo, ma il link in bio <strong>non porta da nessuna parte di utile.</strong></span></li>
+    <li><span class="pain-icon">✕</span><span>Hai lanciato una campagna ADS e i soldi <strong>sono spariti senza risultati.</strong></span></li>
+    <li><span class="pain-icon">✕</span><span>Hai mandato email alla tua lista e nessuno <strong>ha cliccato su niente.</strong></span></li>
+    <li><span class="pain-icon">✕</span><span>La tua pagina esiste, ma <strong>non parla a nessuno in particolare.</strong></span></li>
+  </ul>
+  <div class="pain-conclusion reveal">Il problema non è il traffico. È quello che succede dopo che qualcuno arriva sulla tua pagina.</div>
+</section>
+
+<!-- LA DIFFERENZA -->
+<section id="solution">
+  <span class="section-label reveal">La differenza</span>
+  <p class="solution-statement reveal">Una landing page strategica non è un catalogo.<br>È una <em>conversazione strutturata</em> che guida il visitatore da "chi sei?" fino a "<em>lo voglio adesso</em>".</p>
+  <p class="section-sub reveal">Non solo design. Non solo testi. Costruisco il sistema completo — pensato per il tuo settore, il tuo cliente e il tuo obiettivo specifico.</p>
+  <div class="solution-pillars reveal">
+    <div class="pillar"><div class="pillar-num">01</div><h4>Design</h4><p>Visual che guida, non solo che decora.</p></div>
+    <div class="pillar"><div class="pillar-num">02</div><h4>Copy</h4><p>Parole scelte per muovere il lettore.</p></div>
+    <div class="pillar"><div class="pillar-num">03</div><h4>Funnel</h4><p>Struttura che trasforma le visite in clienti.</p></div>
+  </div>
+</section>
+
+<!-- SERVIZI -->
+<section id="services">
+  <span class="section-label reveal">Servizi</span>
+  <h2 class="section-title reveal">Cosa posso fare per la tua attività</h2>
+  <div class="services-grid reveal">
+    <div class="service-card">
+      <div class="service-num">01</div>
+      <h3>Landing Page</h3>
+      <p class="service-tagline">Per chi ha bisogno di una pagina che converta i visitatori in clienti.</p>
+      <p class="service-desc">Una LP progettata da zero con copy strategico incluso. Ideale per bio Instagram, campagna puntuale o raccolta contatti.</p>
+      <ul class="service-features">
+        <li>Design visivo adattato al tuo brand</li>
+        <li>Copy scritto per convertire</li>
+        <li>Ottimizzata per mobile</li>
+        <li>Consegna in 5–8 giorni</li>
+      </ul>
+    </div>
+    <div class="service-card">
+      <div class="service-num">02</div>
+      <h3>LP + Pubblicità</h3>
+      <p class="service-tagline">Per chi vuole traffico qualificato dal primo giorno.</p>
+      <p class="service-desc">Abbino la landing a una campagna pubblicitaria configurata per portare clienti reali, non solo clic.</p>
+      <ul class="service-features">
+        <li>Tutto del piano precedente</li>
+        <li>Segmentazione e configurazione campagna</li>
+        <li>Testi e creatività per gli annunci</li>
+        <li>Monitoraggio iniziale e ottimizzazioni</li>
+      </ul>
+    </div>
+    <div class="service-card featured">
+      <span class="featured-badge">Più completo</span>
+      <div class="service-num">03</div>
+      <h3>Funnel Completo</h3>
+      <p class="service-tagline">Per chi vuole un sistema che lavora da solo.</p>
+      <p class="service-desc">LP + annunci + email marketing automatizzato per nutrire i contatti e chiudere vendite in pilota automatico.</p>
+      <ul class="service-features">
+        <li>Tutto dei piani precedenti</li>
+        <li>Sequenza email automatizzata</li>
+        <li>Mailchimp, Boost CRM, ActiveCampaign…</li>
+        <li>Design dei template email</li>
+        <li>Creatività per Meta Ads</li>
+        <li>Strategia di contenuto per il funnel</li>
+      </ul>
+    </div>
+  </div>
+  <div class="services-cta reveal">
+    <p><em>Non sai quale piano fa per te? Raccontami la tua situazione e te lo dico in 10 minuti.</em></p>
+    <a href="https://wa.me/34604859267?text=Ciao%20Antonio%2C%20sono%20interessato%20a%20uno%20dei%20tuoi%20piani.%20Possiamo%20parlarne%3F" target="_blank" class="btn-primary">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      WhatsApp
+    </a>
+  </div>
+</section>
+
+<!-- PROGETTI — CREAM -->
+<section id="portfolio">
+  <span class="section-label reveal">Progetti</span>
+  <h2 class="section-title reveal">Così lavoro io.<br>Tre settori. Tre obiettivi diversi.</h2>
+  <p class="portfolio-intro reveal">Progetti dimostrativi che mostrano la mia metodologia applicata a casi reali. Ognuno parte da un problema specifico e costruisce una soluzione strategica diversa.</p>
+  <p class="portfolio-lang-note reveal">I progetti dimostrativi sono in spagnolo — lavoro in entrambe le lingue.</p>
+
+  <div class="portfolio-grid reveal">
+    <div class="portfolio-card">
+      <div class="portfolio-card-left">
+        <div class="portfolio-header">
+          <span class="portfolio-sector">Bellezza · Bio Instagram</span>
+          <h3>Convertire i follower in clienti senza attrito</h3>
+          <p class="portfolio-objetivo">Obiettivo: LP per bio Instagram che genera prenotazioni dirette</p>
+          <a href="https://albabyalbany.netlify.app/" target="_blank" class="portfolio-link">Vedi progetto <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M4 2h6v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+        <div class="portfolio-body">Una professionista della nail art con agenda piena e oltre 100 recensioni positive. Il problema classico: tutta quella credibilità non appariva da nessuna parte che il potenziale cliente potesse vedere prima di prenotare. Ho progettato una LP emotiva e diretta che mostra il lavoro, parla al cliente ideale e porta al bottone di prenotazione nei primi secondi.</div>
+      </div>
+      <div class="portfolio-preview">
+        <img src="https://res.cloudinary.com/dtpdekplo/image/upload/v1778590643/171_1x_shots_so_m2aniz.png" alt="Landing page Bellezza" loading="lazy"/>
+      </div>
+    </div>
+
+    <div class="portfolio-card">
+      <div class="portfolio-card-left">
+        <div class="portfolio-header">
+          <span class="portfolio-sector">Ristorante · Lead Gen + ADS</span>
+          <h3>Riempire i tavoli nei giorni di bassa con un coupon 2×1</h3>
+          <p class="portfolio-objetivo">Obiettivo: raccolta contatti + campagna pubblicitaria</p>
+          <a href="https://pizzeriamanamme.netlify.app/" target="_blank" class="portfolio-link">Vedi progetto <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M4 2h6v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+        <div class="portfolio-body">Una pizzeria napoletana con tre locali e oltre 2.000 recensioni su Google. La sfida: trasformare quella reputazione in una campagna concreta che generi prenotazioni reali dal lunedì al mercoledì. Ho costruito una LP di acquisizione con copy basato sul problema reale del cliente e un coupon 2×1 come gancio di ingresso nel funnel.</div>
+      </div>
+      <div class="portfolio-preview">
+        <img src="https://res.cloudinary.com/dtpdekplo/image/upload/v1778590643/690_1x_shots_so_dc8sym.png" alt="Landing page Ristorante" loading="lazy"/>
+      </div>
+    </div>
+
+    <div class="portfolio-card">
+      <div class="portfolio-card-left">
+        <div class="portfolio-header">
+          <span class="portfolio-sector">Fisioterapia · Prenotazioni settore salute</span>
+          <h3>Attrarre pazienti con dolore cronico che hanno già provato di tutto</h3>
+          <p class="portfolio-objetivo">Obiettivo: prenotazioni dirette via WhatsApp per pazienti specifici</p>
+          <a href="https://santacruzfisioterapia.netlify.app/" target="_blank" class="portfolio-link">Vedi progetto <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M4 2h6v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+        <div class="portfolio-body">Il settore medico ha una difficoltà specifica: il paziente arriva con sfiducia accumulata e poca voglia di provare "un altro specialista". Ho progettato una LP che parla direttamente a quello stato emotivo, identifica la situazione, spiega il metodo con precisione clinica ed elimina la frizione per prendere appuntamento.</div>
+      </div>
+      <div class="portfolio-preview">
+        <img src="https://res.cloudinary.com/dtpdekplo/image/upload/v1778590643/183_1x_shots_so_f4vqsw.png" alt="Landing page Fisioterapia" loading="lazy"/>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COME LAVORO -->
+<section id="process">
+  <span class="section-label reveal">Come lavoro</span>
+  <h2 class="section-title reveal">Senza riunioni infinite.<br>Senza sorprese.</h2>
+  <div class="process-steps reveal">
+    <div class="process-step">
+      <div class="step-num">01</div>
+      <p class="step-time">Giorno 1</p>
+      <h3>Raccontami il tuo progetto</h3>
+      <p>Parliamo su WhatsApp o in chiamata. Mi dici cosa ti serve, a chi vendi e qual è il tuo obiettivo. In 24h ho una proposta chiara per te.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-num">02</div>
+      <p class="step-time">Giorni 2–6</p>
+      <h3>Design, copy e struttura</h3>
+      <p>Mi occupo di tutto: ricerca del settore, scrittura del copy, design della pagina e struttura del funnel. Tu rivedi, io aggiusto.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-num">03</div>
+      <p class="step-time">Giorni 7–8</p>
+      <h3>Pubblicazione e consegna</h3>
+      <p>La pagina è attiva e pronta. Se il progetto include ADS o email, lo configuriamo insieme e ti spiego come funziona tutto.</p>
+    </div>
+  </div>
+  <div class="process-tag reveal">
+    <div class="process-tag-item"><span class="process-dot"></span><span>Consegna media: 5–8 giorni</span></div>
+    <div class="process-divider"></div>
+    <div class="process-tag-item"><span class="process-dot"></span><span>Revisioni incluse</span></div>
+  </div>
+</section>
+
+<!-- CHI SONO — CREAM -->
+<div id="about-wrap">
+  <div id="about" class="reveal">
+    <div class="about-photo-wrap">
+      <img src="https://res.cloudinary.com/dtpdekplo/image/upload/v1778755236/ChatGPT_Image_14_mag_2026_11_40_03_c4lsre.png" alt="Antonio Di Pinto" style="width:100%;height:100%;object-fit:cover;object-position:top;border-radius:16px;display:block;border:1px solid var(--border-c);"/>
+    </div>
+    <div class="about-text">
+      <span class="section-label">Chi sono</span>
+      <h2 class="section-title">Sono Antonio Di Pinto.</h2>
+      <p class="about-body">
+        Web designer e stratega di funnel freelance con <strong>più di 4 anni di esperienza nel mondo del marketing</strong>.<br><br>
+        <strong>Non sono un'agenzia. Non ci sono intermediari.</strong> Quando lavori con me, lavori direttamente con me — dalla prima chiamata alla consegna finale.<br><br>
+        Lavoro con attività locali, professionisti indipendenti e agenzie pubblicitarie che vogliono crescere senza dipendere dalla fortuna.
+      </p>
+      <div class="about-highlight">"Una landing page funziona solo se design, copy e strategia vanno nella stessa direzione. Per questo me ne occupo io di tutti e tre."</div>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<section id="faq">
+  <span class="section-label reveal">Domande frequenti</span>
+  <h2 class="section-title reveal">Tutto quello che devi sapere</h2>
+  <div class="faq-list reveal">
+    <div class="faq-item"><button class="faq-q">Quanto costa una landing page? <span class="faq-icon">+</span></button><div class="faq-a">Dipende dal progetto. Prima di dirti un numero ho bisogno di capire cosa vuoi ottenere. Parliamo 10 minuti e ti do un preventivo senza impegno.</div></div>
+    <div class="faq-item"><button class="faq-q">Quanto tempo ci vuoi per consegnare? <span class="faq-icon">+</span></button><div class="faq-a">Tra 5 e 8 giorni per una landing page standard. I progetti con funnel completo possono richiedere un po' più di tempo a seconda della complessità.</div></div>
+    <div class="faq-item"><button class="faq-q">Devo già avere il design o i testi? <span class="faq-icon">+</span></button><div class="faq-a">No. Mi occupo io del copy (i testi) e del design. Ho bisogno solo di informazioni sulla tua attività e sul tuo cliente ideale.</div></div>
+    <div class="faq-item"><button class="faq-q">Posso chiederti modifiche dopo la consegna? <span class="faq-icon">+</span></button><div class="faq-a">Sì. Includo round di revisione in tutti i progetti. L'obiettivo è che tu sia 100% soddisfatto.</div></div>
+    <div class="faq-item"><button class="faq-q">Lavori solo con attività italiane? <span class="faq-icon">+</span></button><div class="faq-a">No. Lavoro da remoto con clienti in tutta Italia e anche in altri paesi.</div></div>
+    <div class="faq-item"><button class="faq-q">Lavori con agenzie in modalità white label? <span class="faq-icon">+</span></button><div class="faq-a">Sì. Se hai un'agenzia o gestisci clienti di terzi, posso consegnare il progetto con il tuo brand senza che il cliente finale sappia che ho partecipato. Tutto il processo è discreto e professionale.</div></div>
+    <div class="faq-item"><button class="faq-q">Non so quale piano fa per me, cosa faccio? <span class="faq-icon">+</span></button><div class="faq-a">Raccontami la tua situazione e te lo dico io. A volte basta una semplice LP. Altre volte ha più senso un funnel completo. Lo valutiamo insieme.</div></div>
+  </div>
+</section>
+
+<!-- CTA FINALE -->
+<section id="cta">
+  <span class="cta-label reveal">Parliamone</span>
+  <h2 class="cta-h2 reveal">Hai un progetto<br>in mente?</h2>
+  <p class="cta-sub reveal">Con una breve call di 10 minuti posso capire il tuo progetto e consigliarti la soluzione migliore.</p>
+  <div class="cta-buttons reveal">
+    <a href="https://wa.me/34604859267?text=Ciao%20Antonio%2C%20ho%20un%20progetto%20in%20mente%20e%20vorrei%20parlartene." target="_blank" class="btn-primary">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Scrivimi su WhatsApp
+    </a>
+  </div>
+  <p class="cta-trust reveal">Senza impegno · Risposta in meno di 24h</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <span class="footer-brand">Antonio Di Pinto<span class="dot">.</span></span>
+    <span style="margin-left:8px;">· Design web, Copy &amp; Funnel</span>
+  </div>
+  <div class="footer-links">
+    <a href="https://instagram.com/antonio.di.pinto" target="_blank">@antonio.di.pinto</a>
+    <span>© 2026</span>
+  </div>
+</footer>
+
+<script>
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach((el, i) => {
+    if (el.isIntersecting) {
+      el.target.style.transitionDelay = (i * 0.05) + 's';
+      el.target.classList.add('visible');
+      obs.unobserve(el.target);
+    }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+document.querySelectorAll('.faq-q').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.parentElement;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  });
+});
+
+window.addEventListener('scroll', () => {
+  document.querySelector('nav').style.background =
+    window.scrollY > 50 ? 'rgba(8,8,8,0.96)' : 'rgba(8,8,8,0.82)';
+}, { passive: true });
+</script>
+</body>
+</html>
